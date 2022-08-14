@@ -6,7 +6,7 @@ bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start', 'help'])
 def start(message: telebot.types.Message):
-    text = 'For start enter: from currency, to currency, quantity separated by "space"\nExample: dollar euro 100 \n  \
+    text = 'For start enter: from currency, to currency, quantity separated by "space"\nExample: dollar euro 100 \n\
 To see currencies enter: /values'
     bot.reply_to(message, text)
 
@@ -31,12 +31,8 @@ def convert(message: telebot.types.Message):
     except Exception as e:
         bot.reply_to(message, f'Cannot fulfill request: \n {e}')
     else:
-        text = f'Value of {amount} {base} in {quote} is {total} with rate {rate}'
+        text = f'Value of {amount} {base} in {quote} is {total} with rate {rate} {quote} for 1 {base}'
         bot.send_message(message.chat.id, text)
 
 
 bot.polling()
-
-
-
-
